@@ -244,3 +244,28 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   document.head.appendChild(style);
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const socialButtons = document.querySelectorAll(".social-icons a");
+  
+  socialButtons.forEach(button => {
+      button.addEventListener("click", function(e) {
+          e.preventDefault(); 
+
+          if (this.classList.contains("active")) {
+              this.classList.remove("active");
+              return;
+          }
+          
+          socialButtons.forEach(btn => btn.classList.remove("active"));
+          
+          this.classList.add("active");
+      });
+  });
+  
+  document.addEventListener("click", function(e) {
+      if (!e.target.closest(".social-icons")) {
+          socialButtons.forEach(btn => btn.classList.remove("active"));
+      }
+  });
+});
